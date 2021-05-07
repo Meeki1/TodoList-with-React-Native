@@ -2,11 +2,10 @@ import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import { THEME } from '../theme'
 
-export const Navbar = (props) => {
+export const Navbar = ({title}) => {
     return (
         <View style={styles.navbar}>
-            <Text style= { styles.text }>{props.title}</Text>
-
+            <Text style= {styles.text}>{title}</Text>
         </View>
     )
 }

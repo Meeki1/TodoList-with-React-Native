@@ -1,22 +1,32 @@
 import React from 'react'
-import {StyleSheet, View, Text, Button} from 'react-native'
-import {THEME} from '../theme'
+import { StyleSheet, View, Text, Button } from 'react-native'
+import { AppCard } from '../components/ui/AppCard'
+import { THEME } from '../theme'
 
-export const TodoScreen = ({goBack, todo}) => {
+
+export const TodoScreen = ({ goBack, todo }) => {
     return (
-        <View>
-            <Text>{todo.title}</Text>
-            <View style={styles.buttons}>
-                <View style={styles.button}>
-                    <Button title="back" color={THEME.GREY_COLOR} onPress={goBack} />
-                </View>
-                <View style={styles.button}>
-                    <Button title="delete" color={THEME.DANGER_COLOR} onPress={() => console.log('remove')} />
-                </View>
-            </View> 
+      <View>
+        <AppCard style={styles.card}>
+          <Text style={styles.title}>{todo.title}</Text>
+          <Button title='Edit' />
+        </AppCard>
+  
+        <View style={styles.buttons}>
+          <View style={styles.button}>
+            <Button title='Назад' onPress={goBack} color={THEME.GREY_COLOR} />
+          </View>
+          <View style={styles.button}>
+            <Button
+              title='Удалить'
+              color={THEME.DANGER_COLOR}
+              onPress={() => console.log('To Remove')}
+            />
+          </View>
         </View>
+      </View>
     )
-}
+  }
 
 const styles = StyleSheet.create({
     buttons: {
@@ -24,7 +34,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     button: {
-        width: '45%'
+        width: '40%',
+
+    },
+    title: {
+        fontSize: 20
+    },
+    card: {
+        marginBottom: 20,
+        padding: 15
     }
-    
 })

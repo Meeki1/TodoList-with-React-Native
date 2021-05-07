@@ -12,8 +12,7 @@ export const MainScreen = ({addTodo, todos, removeTodo, openTodo}) => {
             keyExtractor={(item => item.id.toString())}
             data={todos}
             renderItem={({item}) => (
-                <Todo todo={item} onRemove={removeTodo} onOpen={openTodo} /> 
-                ) }
+            <Todo todo={item} onRemove={removeTodo} onOpen={openTodo} /> )}
             />
         </View>
     )

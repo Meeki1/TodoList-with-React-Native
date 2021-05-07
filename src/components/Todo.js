@@ -3,7 +3,8 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 export const Todo = ({todo, onRemove, onOpen}) => {
     return (
-        <TouchableOpacity activeOpacity={0.5} 
+        <TouchableOpacity 
+        activeOpacity={0.5} 
         onPress={() => onOpen(todo.id)} 
         onLongPress={onRemove.bind(null, todo.id) } 
         >
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 15,
-        borderTopWidth: 1,
+        borderWidth: 1,
         borderColor: '#eee',
         borderRadius: 5,
         marginBottom: 10
