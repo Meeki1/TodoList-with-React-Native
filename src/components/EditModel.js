@@ -19,17 +19,17 @@ export const EditModel = ({visible, onCalcel, value, onSave }) => {
         <Modal visible={visible} animationType='slide' transparent={false} >
             <View style={styles.wrap}>
                 <TextInput 
-                value={title}
-                onChangeText={setTitle}
-                style={styles.input} 
-                placeholder="Input task" 
-                autoCapitalize='none' 
-                autoCorrect={false} 
-                maxLength={64} />
+                    value={title}
+                    onChangeText={setTitle}
+                    style={styles.input} 
+                    placeholder="Input task" 
+                    autoCapitalize='none' 
+                    autoCorrect={false} 
+                    maxLength={64} />
                 <View style={styles.buttons}>
                 <Button title="Cancel" onPress={onCalcel} color={THEME.DANGER_COLOR}/>
                 <Button title="Save" onPress={() => saveHandler()} />
-                </View>
+            </View>
             </View>
         </Modal>
     )

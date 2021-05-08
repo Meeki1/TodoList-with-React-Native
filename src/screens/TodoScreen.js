@@ -21,8 +21,8 @@ export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
         onCalcel={() => setModel(false)} 
         onSave={saveHandler}
         />
-      <AppCard style={styles.card}>
-        <Text style={styles.title}>{todo.title}</Text>
+      <AppCard style={styles.card} >
+        <Text style={styles.title}> {todo.title} </Text>
         <Button title='Edit' onPress={() => setModel(true)} />
       </AppCard>
 
