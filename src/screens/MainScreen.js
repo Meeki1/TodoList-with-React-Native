@@ -1,7 +1,7 @@
 import React from 'react'
-import {StyleSheet, View, FlatList, Text, Image } from 'react-native'
-import {AddTodo} from '../components/AddTodo'
-import {Todo} from '../components/Todo'
+import { StyleSheet, View, FlatList, Image } from 'react-native'
+import { AddTodo } from '../components/AddTodo'
+import { Todo } from '../components/Todo'
 
 export const MainScreen = ({addTodo, todos, removeTodo, openTodo}) => {
 
