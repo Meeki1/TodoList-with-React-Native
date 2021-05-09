@@ -4,7 +4,6 @@ import { Navbar } from "./components/Navbar"
 import { THEME } from "./theme"
 import { MainScreen } from "./screens/MainScreen"
 import { TodoScreen } from "./screens/TodoScreen"
-import { TodoContext } from "./context/todo/todoContext"
 import { ScreenContext } from "./context/screen/screenContext"
 
 export const MainLoayout = () => {

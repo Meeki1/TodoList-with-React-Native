@@ -26,7 +26,7 @@ export const TodoScreen = () => {
       <EditModel
         value={todo.title}
         visible={model}
-        onCalcel={() => setModel(false)}
+        onCancel={() => setModel(false)}
         onSave={saveHandler}
       />
       <AppCard style={styles.card}>
