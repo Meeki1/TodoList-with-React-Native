@@ -1,4 +1,3 @@
-import { set } from 'lodash'
 import React, { useState, useEffect, useContext, useCallback } from 'react'
 import { StyleSheet, View, FlatList, Image, Dimensions } from 'react-native'
 import { AddTodo } from '../components/AddTodo'

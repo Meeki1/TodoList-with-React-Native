@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react"
-import { View, StyleSheet } from "react-native"
-import { Navbar } from "./components/Navbar"
-import { THEME } from "./theme"
-import { MainScreen } from "./screens/MainScreen"
-import { TodoScreen } from "./screens/TodoScreen"
-import { ScreenContext } from "./context/screen/screenContext"
+import React, { useState, useContext } from 'react'
+import { View, StyleSheet } from 'react-native'
+import { Navbar } from './components/Navbar'
+import { THEME } from './theme'
+import { MainScreen } from './screens/MainScreen'
+import { TodoScreen } from './screens/TodoScreen'
+import { ScreenContext } from './context/screen/screenContext'
 
 export const MainLoayout = () => {
   const { todoId } = useContext(ScreenContext)
