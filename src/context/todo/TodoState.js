@@ -63,6 +63,7 @@ export const TodoState = ({ children }) => {
   }
 
   const fetchTodos = async () => {
+    showLoader()
     const response = await fetch(
       'https://rn-todo-app-efada-default-rtdb.firebaseio.com/todos.json',
       {
@@ -73,7 +74,8 @@ export const TodoState = ({ children }) => {
     const data = await response.json()
     console.log('Fetch todos', data)
     const todos = Object.keys(data).map((key) => ({ ...data[key], id: key }))
-    setTimeout(() => dispatch({ type: FETCH_TODOS, todos }, 5000))
+    dispatch({ type: FETCH_TODOS, todos })
+    hideLoader()
   }
 
   const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title })
