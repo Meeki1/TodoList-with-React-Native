@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react"
-import { StyleSheet, View, Dimensions } from "react-native"
-import { FontAwesome, AntDesign } from "@expo/vector-icons"
-import { EditModel } from "../components/EditModel"
-import { AppCard } from "../components/ui/AppCard"
-import { THEME } from "../theme"
-import { AppTextBold } from "../components/ui/AppTextBold"
-import { AppButton } from "../components/ui/AppButton"
-import { TodoContext } from "../context/todo/todoContext"
-import { ScreenContext } from "../context/screen/screenContext"
+import React, { useState, useContext } from 'react'
+import { StyleSheet, View, Dimensions } from 'react-native'
+import { FontAwesome, AntDesign } from '@expo/vector-icons'
+import { EditModel } from '../components/EditModel'
+import { AppCard } from '../components/ui/AppCard'
+import { THEME } from '../theme'
+import { AppTextBold } from '../components/ui/AppTextBold'
+import { AppButton } from '../components/ui/AppButton'
+import { TodoContext } from '../context/todo/todoContext'
+import { ScreenContext } from '../context/screen/screenContext'
 
 export const TodoScreen = () => {
   const { todos, updateTodo, removeTodo } = useContext(TodoContext)
@@ -16,8 +16,8 @@ export const TodoScreen = () => {
 
   const todo = todos.find((t) => t.id === todoId)
 
-  const saveHandler = (title) => {
-    updateTodo(todo.id, title)
+  const saveHandler = async (title) => {
+    await updateTodo(todo.id, title)
     setModel(false)
   }
 
@@ -60,12 +60,12 @@ export const TodoScreen = () => {
 
 const styles = StyleSheet.create({
   buttons: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   button: {
     // width: Dimensions.get('window').width
-    width: Dimensions.get("window").width > 400 ? 150 : 100,
+    width: Dimensions.get('window').width > 400 ? 150 : 100,
   },
   title: {
     fontSize: 20,
