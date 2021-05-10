@@ -1,29 +1,37 @@
-import { set } from "lodash"
-import React, { useState, useEffect, useContext } from "react"
-import { StyleSheet, View, FlatList, Image, Dimensions } from "react-native"
-import { AddTodo } from "../components/AddTodo"
-import { Todo } from "../components/Todo"
-import { ScreenContext } from "../context/screen/screenContext"
-import { TodoContext } from "../context/todo/todoContext"
-import { THEME } from "../theme"
+import { set } from 'lodash'
+import React, { useState, useEffect, useContext, useCallback } from 'react'
+import { StyleSheet, View, FlatList, Image, Dimensions } from 'react-native'
+import { AddTodo } from '../components/AddTodo'
+import { Todo } from '../components/Todo'
+import { ScreenContext } from '../context/screen/screenContext'
+import { TodoContext } from '../context/todo/todoContext'
+import { THEME } from '../theme'
 
 export const MainScreen = () => {
-  const { addTodo, todos, removeTodo } = useContext(TodoContext)
+  const { addTodo, todos, removeTodo, fetchTodos, loading, error } = useContext(
+    TodoContext
+  )
   const { changeScreen } = useContext(ScreenContext)
   const [deviceWidth, setDeviceWidth] = useState(
-    Dimensions.get("window").width - THEME.PADDING_HORIZONTAL * 2
+    Dimensions.get('window').width - THEME.PADDING_HORIZONTAL * 2
   )
+
+  const loadTodos = useCallback(async () => await fetchTodos(), [fetchTodos])
+
+  useEffect(() => {
+    loadTodos()
+  }, [])
 
   useEffect(() => {
     const update = () => {
       const width =
-        Dimensions.get("window").width - THEME.PADDING_HORIZONTAL * 2
+        Dimensions.get('window').width - THEME.PADDING_HORIZONTAL * 2
       setDeviceWidth(width)
     }
-    Dimensions.addEventListener("change", update)
+    Dimensions.addEventListener('change', update)
 
     return () => {
-      Dimensions.removeEventListener("change", update)
+      Dimensions.removeEventListener('change', update)
     }
   })
 
@@ -44,7 +52,7 @@ export const MainScreen = () => {
       <View style={styles.imgWpar}>
         <Image
           style={styles.image}
-          source={require("../../assets/no_items_found2.png")}
+          source={require('../../assets/no_items_found2.png')}
           resizeMode="contain"
         />
       </View>
@@ -61,13 +69,13 @@ export const MainScreen = () => {
 
 const styles = StyleSheet.create({
   imgWpar: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 10,
     height: 300,
   },
   image: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
 })
