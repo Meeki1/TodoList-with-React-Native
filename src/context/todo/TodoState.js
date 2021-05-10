@@ -13,6 +13,7 @@ import {
   UPDATE_TODO,
 } from '../types'
 import { ScreenContext } from '../screen/screenContext'
+import { Http } from '../../http'
 
 export const TodoState = ({ children }) => {
   const initialState = {
@@ -24,16 +25,16 @@ export const TodoState = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, initialState)
 
   const addTodo = async (title) => {
-    const response = await fetch(
-      'https://rn-todo-app-efada-default-rtdb.firebaseio.com/todos.json',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title }),
-      }
-    )
-    const data = await response.json()
-    dispatch({ type: ADD_TODO, title, id: data.name })
+    clearError()
+    try {
+      const data = await Http.post(
+        'https://rn-todo-app-efada-default-rtdb.firebaseio.com/todos.json',
+        { title }
+      )
+      dispatch({ type: ADD_TODO, title, id: data.name })
+    } catch (e) {
+      showError('Что-пошло не так...')
+    }
   }
 
   const removeTodo = (id) => {
@@ -51,12 +52,8 @@ export const TodoState = ({ children }) => {
           style: 'destructive',
           onPress: async () => {
             changeScreen(null)
-            await fetch(
-              `https://rn-todo-app-efada-default-rtdb.firebaseio.com/todos/${id}.json`,
-              {
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' },
-              }
+            await Http.delete(
+              `https://rn-todo-app-efada-default-rtdb.firebaseio.com/todos/${id}.json`
             )
             dispatch({ type: REMOVE_TODO, id })
           },
@@ -70,20 +67,14 @@ export const TodoState = ({ children }) => {
     showLoader()
     clearError()
     try {
-      const response = await fetch(
-        'https://rn-todo-app-efada-default-rtdb.firebaseio.com/todos.json',
-        {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        }
+      const data = await Http.get(
+        'https://rn-todo-app-efada-default-rtdb.firebaseio.com/todos.json'
       )
-      const data = await response.json()
       if (data) {
         const todos = Object.keys(data).map((key) => ({
           ...data[key],
           id: key,
         }))
-
         dispatch({ type: FETCH_TODOS, todos })
       }
     } catch (e) {
@@ -97,13 +88,9 @@ export const TodoState = ({ children }) => {
   const updateTodo = async (id, title) => {
     clearError()
     try {
-      await fetch(
+      const response = await Http.patch(
         `https://rn-todo-app-efada-default-rtdb.firebaseio.com/todos/${id}.json`,
-        {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title }),
-        }
+        { title }
       )
       dispatch({ type: UPDATE_TODO, id, title })
     } catch (e) {
