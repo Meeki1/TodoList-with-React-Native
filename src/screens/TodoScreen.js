@@ -14,9 +14,9 @@ export const TodoScreen = () => {
   const { todoId, changeScreen } = useContext(ScreenContext)
   const [model, setModel] = useState(false)
 
-  const todo = todos.find((t) => t.id === todoId)
+  const todo = todos.find(t => t.id === todoId)
 
-  const saveHandler = async (title) => {
+  const saveHandler = async title => {
     await updateTodo(todo.id, title)
     setModel(false)
   }
@@ -32,7 +32,7 @@ export const TodoScreen = () => {
       <AppCard style={styles.card}>
         <AppTextBold style={styles.title}> {todo.title} </AppTextBold>
         <AppButton onPress={() => setModel(true)}>
-          <FontAwesome name="edit" size={20} />
+          <FontAwesome name='edit' size={20} />
         </AppButton>
       </AppCard>
 
@@ -40,17 +40,15 @@ export const TodoScreen = () => {
         <View style={styles.button}>
           <AppButton
             onPress={() => changeScreen(null)}
-            color={THEME.GREY_COLOR}
-          >
-            <AntDesign name="back" size={20} color="#fff" />
+            color={THEME.GREY_COLOR}>
+            <AntDesign name='back' size={20} color='#fff' />
           </AppButton>
         </View>
         <View style={styles.button}>
           <AppButton
             color={THEME.DANGER_COLOR}
-            onPress={() => removeTodo(todo.id)}
-          >
-            <FontAwesome name="remove" size={20} color="#fff" />
+            onPress={() => removeTodo(todo.id)}>
+            <FontAwesome name='remove' size={20} color='#fff' />
           </AppButton>
         </View>
       </View>

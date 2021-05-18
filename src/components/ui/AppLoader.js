@@ -5,7 +5,7 @@ import { THEME } from '../../theme'
 export const AppLoader = () => {
   return (
     <View style={styles.center}>
-      <ActivityIndicator size="large" color={THEME.MAIN_COLOR} />
+      <ActivityIndicator size='large' color={THEME.MAIN_COLOR} />
     </View>
   )
 }

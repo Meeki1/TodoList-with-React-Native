@@ -1,7 +1,7 @@
-import React, { useState } from "react"
-import { View, StyleSheet, TextInput, Button, Modal, Alert } from "react-native"
-import { THEME } from "../theme"
-import { AppButton } from "../components/ui/AppButton"
+import React, { useState } from 'react'
+import { View, StyleSheet, TextInput, Button, Modal, Alert } from 'react-native'
+import { THEME } from '../theme'
+import { AppButton } from '../components/ui/AppButton'
 
 export const EditModel = ({ visible, onCancel, value, onSave }) => {
   const [title, setTitle] = useState(value)
@@ -9,7 +9,7 @@ export const EditModel = ({ visible, onCancel, value, onSave }) => {
   const saveHandler = () => {
     if (title.trim().length < 3) {
       Alert.alert(
-        "Error",
+        'Error',
         `Minimal length for task must be bigger than 3 symbols. Current length = ${
           title.trim().length
         } symbols.`
@@ -24,23 +24,22 @@ export const EditModel = ({ visible, onCancel, value, onSave }) => {
     onCancel()
   }
   return (
-    <Modal visible={visible} animationType="slide" transparent={false}>
+    <Modal visible={visible} animationType='slide' transparent={false}>
       <View style={styles.wrap}>
         <TextInput
           value={title}
           onChangeText={setTitle}
           style={styles.input}
-          placeholder="Input task"
-          autoCapitalize="none"
+          placeholder='Input task'
+          autoCapitalize='none'
           autoCorrect={false}
           maxLength={64}
         />
         <View style={styles.buttons}>
           <AppButton
-            title="Cancel"
+            title='Cancel'
             onPress={cancelHandler}
-            color={THEME.DANGER_COLOR}
-          >
+            color={THEME.DANGER_COLOR}>
             Cancel
           </AppButton>
           <AppButton onPress={() => saveHandler()}>Save</AppButton>
@@ -53,19 +52,19 @@ export const EditModel = ({ visible, onCancel, value, onSave }) => {
 const styles = StyleSheet.create({
   wrap: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   input: {
     padding: 10,
     borderBottomColor: THEME.MAIN_COLOR,
     borderBottomWidth: 2,
-    width: "80%",
+    width: '80%',
   },
   buttons: {
-    width: "100%",
+    width: '100%',
     marginTop: 10,
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 })

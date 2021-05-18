@@ -24,7 +24,7 @@ export const TodoState = ({ children }) => {
   const { changeScreen } = useContext(ScreenContext)
   const [state, dispatch] = useReducer(todoReducer, initialState)
 
-  const addTodo = async (title) => {
+  const addTodo = async title => {
     clearError()
     try {
       const data = await Http.post(
@@ -37,8 +37,8 @@ export const TodoState = ({ children }) => {
     }
   }
 
-  const removeTodo = (id) => {
-    const todo = state.todos.find((t) => t.id === id)
+  const removeTodo = id => {
+    const todo = state.todos.find(t => t.id === id)
     Alert.alert(
       'Удаление элемента',
       `Вы уверены, что хотите удалить "${todo.title}"?`,
@@ -71,7 +71,7 @@ export const TodoState = ({ children }) => {
         'https://rn-todo-app-efada-default-rtdb.firebaseio.com/todos.json'
       )
       if (data) {
-        const todos = Object.keys(data).map((key) => ({
+        const todos = Object.keys(data).map(key => ({
           ...data[key],
           id: key,
         }))
@@ -103,7 +103,7 @@ export const TodoState = ({ children }) => {
 
   const hideLoader = () => dispatch({ type: HIDE_LOADER })
 
-  const showError = (error) => dispatch({ type: SHOW_ERROR, error })
+  const showError = error => dispatch({ type: SHOW_ERROR, error })
 
   const clearError = () => dispatch({ type: CLEAR_ERROR })
 
@@ -117,8 +117,7 @@ export const TodoState = ({ children }) => {
         removeTodo,
         updateTodo,
         fetchTodos,
-      }}
-    >
+      }}>
       {children}
     </TodoContext.Provider>
   )

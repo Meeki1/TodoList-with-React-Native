@@ -53,7 +53,7 @@ export const MainScreen = () => {
   let content = (
     <View style={{ width: deviceWidth }}>
       <FlatList
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={item => item.id.toString()}
         data={todos}
         renderItem={({ item }) => (
           <Todo todo={item} onRemove={removeTodo} onOpen={changeScreen} />
@@ -68,7 +68,7 @@ export const MainScreen = () => {
         <Image
           style={styles.image}
           source={require('../../assets/no_items_found2.png')}
-          resizeMode="contain"
+          resizeMode='contain'
         />
       </View>
     )
